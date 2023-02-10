@@ -7,11 +7,13 @@
 import re
 
 def domain_name(url):
-    if '/' in url:        
-        start_url = url.index('/')
-        end_url = url.index('.')
-        domain = url[start_url+2:end_url]        
+
+    pattern = "(\w+\.)"
+    result = re.findall(pattern, url)
+
+    if 'www' in result[0]:
+        domain = result[1][:-1]   
     else:        
-        domain = url.split('.')[1]
+        domain = result[0][:-1]
         
     return domain
